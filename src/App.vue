@@ -12,8 +12,8 @@ export default {
   name: "App",
   components: {
     TheFooter: () => import("@/components/TheFooter.vue"),
-    TheHeader: () => import("@/components/TheHeader.vue")
-  }
+    TheHeader: () => import("@/components/TheHeader.vue"),
+  },
 };
 </script>
 
@@ -65,6 +65,7 @@ p {
   border: none;
   font-family: Avenir, Helvetica, sans-serif;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 .btn:hover {
