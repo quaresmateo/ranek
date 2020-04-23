@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <ul>
-      <li v-for="(pagina, index) in paginasTotal" :key="index">
-        <router-link :to="{ query: query(pagina) }">
-          {{ pagina }}
-        </router-link>
-      </li>
-    </ul>
-  </div>
+  <ul v-if="paginasTotal">
+    <li v-for="pagina in paginasTotal" :key="pagina">
+      <router-link :to="{ query: query(pagina) }">
+        {{ pagina }}
+      </router-link>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -42,4 +40,28 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+li {
+  display: inline-block;
+}
+
+li a {
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 4px;
+}
+
+li a.router-link-exact-active {
+  background: #87f;
+  color: #fff;
+}
+
+li a:hover {
+  background: #a9f;
+  color: #fff;
+}
+
+ul {
+  grid-column: 1/-1;
+}
+</style>
