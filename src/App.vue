@@ -84,6 +84,28 @@ img {
   display: block;
 }
 
+input,
+textarea {
+  border-radius: 4px;
+  border: 1px solid white;
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  padding: 15px;
+  transition: all 0.3s;
+}
+
+input:hover,
+input:focus,
+textarea:hover,
+textarea:focus {
+  border-color: #87f;
+  box-shadow: 0 6px 12px rgba(30, 60, 90, 0.2);
+  outline: none;
+  transform: scale(1.1);
+}
+
 ul {
   list-style: none;
 }
