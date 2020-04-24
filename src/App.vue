@@ -1,32 +1,130 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <TheHeader />
+    <main id="main">
+      <router-view />
+    </main>
+    <TheFooter />
   </div>
 </template>
+<script>
+export default {
+  name: "App",
+  components: {
+    TheFooter: () => import("@/components/TheFooter.vue"),
+    TheHeader: () => import("@/components/TheHeader.vue"),
+  },
+};
+</script>
 
 <style>
+@font-face {
+  font-family: Avenir;
+  src: url("./assets/Avenir/Avenir-Medium.otf");
+}
+
+* {
+  box-sizing: border-box;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#main {
+  flex: 1;
+}
+
+a {
+  color: #345;
+  text-decoration: none;
+}
+
+body,
+ul,
+li,
+h1,
+h2,
+p {
+  padding: 0px;
+  margin: 0px;
+}
+
+.btn {
+  display: block;
+  padding: 10px 30px;
+  background: #87f;
+  border-radius: 4px;
+  color: #fff;
   text-align: center;
-  color: #2c3e50;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
+  transition: all 0.3;
+  border: none;
+  font-family: Avenir, Helvetica, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-#nav {
-  padding: 30px;
+.btn:hover {
+  background: #65d;
+  transform: scale(1.1);
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+body {
+  font-family: Avenir, Helvetica, sans-serif;
+  color: #345;
+  background: url("./assets/pattern.svg") repeat top;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+textarea {
+  border-radius: 4px;
+  border: 1px solid white;
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  padding: 15px;
+  transition: all 0.3s;
+}
+
+input:hover,
+input:focus,
+textarea:hover,
+textarea:focus {
+  border-color: #87f;
+  box-shadow: 0 6px 12px rgba(30, 60, 90, 0.2);
+  outline: none;
+  transform: scale(1.1);
+}
+
+ul {
+  list-style: none;
+}
+
+.v-enter {
+  transform: translate3d(0, -20px, 0);
+}
+
+.v-leave-to {
+  transform: translate3d(0, 20px, 0);
+}
+
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s;
 }
 </style>
