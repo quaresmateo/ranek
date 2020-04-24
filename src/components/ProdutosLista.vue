@@ -27,6 +27,9 @@
         Busca sem Resultados. Tente buscar outro termo.
       </p>
     </div>
+    <div v-else>
+      <PaginaCarregando />
+    </div>
   </section>
 </template>
 
@@ -43,12 +46,13 @@ export default {
   data() {
     return {
       produtos: null,
-      produtosPorPagina: 6,
+      produtosPorPagina: 9,
       produtosTotal: 0,
     };
   },
   methods: {
     getProdutos() {
+      this.produtos = null;
       api.get(this.url).then((response) => {
         this.produtosTotal = Number(response.headers["x-total-count"]);
         this.produtos = response.data;
