@@ -1,35 +1,35 @@
 <template>
   <section class="produtos-container">
-    <div v-if="produtos && produtos.length" class="produtos">
-      <div
-        v-for="(produto, index) in produtos"
-        :key="produto.id + index"
-        class="produto"
-      >
-        <router-link to="/">
-          <img
-            v-if="produto.fotos"
-            :src="produto.fotos[0].src"
-            :alt="produto.fotos[0].titulo"
-          />
-          <p class="preco">{{ produto.preco }}</p>
-          <h2 class="titulo">{{ produto.nome }}</h2>
-          <p>{{ produto.descricao }}</p>
-        </router-link>
+    <transition mode="out-in">
+      <div v-if="produtos && produtos.length" class="produtos" key="produtos">
+        <div
+          v-for="(produto, index) in produtos"
+          :key="produto.id + index"
+          class="produto"
+        >
+          <router-link to="/">
+            <img
+              v-if="produto.fotos"
+              :src="produto.fotos[0].src"
+              :alt="produto.fotos[0].titulo"
+            />
+            <p class="preco">{{ produto.preco }}</p>
+            <h2 class="titulo">{{ produto.nome }}</h2>
+            <p>{{ produto.descricao }}</p>
+          </router-link>
+        </div>
+        <ProdutosPaginar
+          :produtos-total="produtosTotal"
+          :produtos-por-pagina="produtosPorPagina"
+        />
       </div>
-      <ProdutosPaginar
-        :produtos-total="produtosTotal"
-        :produtos-por-pagina="produtosPorPagina"
-      />
-    </div>
-    <div v-else-if="produtos && produtos.length === 0">
-      <p class="sem-resultado">
-        Busca sem Resultados. Tente buscar outro termo.
-      </p>
-    </div>
-    <div v-else>
-      <PaginaCarregando />
-    </div>
+      <div v-else-if="produtos && produtos.length === 0" key="sem-resultados">
+        <p class="sem-resultado">
+          Busca sem Resultados. Tente buscar outro termo.
+        </p>
+      </div>
+      <PaginaCarregando v-else key="carregando" />
+    </transition>
   </section>
 </template>
 
