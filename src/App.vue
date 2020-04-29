@@ -2,7 +2,9 @@
   <div id="app">
     <TheHeader />
     <main id="main">
-      <router-view />
+      <transition mode="out-in">
+        <router-view />
+      </transition>
     </main>
     <TheFooter />
   </div>
@@ -104,6 +106,10 @@ textarea:focus {
   box-shadow: 0 6px 12px rgba(30, 60, 90, 0.2);
   outline: none;
   transform: scale(1.1);
+}
+
+label {
+  margin-bottom: 5px;
 }
 
 ul {
