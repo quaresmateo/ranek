@@ -1,9 +1,7 @@
 <template>
   <ul v-if="paginasTotal">
     <li v-for="pagina in paginas" :key="pagina">
-      <router-link :to="{ query: query(pagina) }">
-        {{ pagina }}
-      </router-link>
+      <router-link :to="{ query: query(pagina) }">{{ pagina }}</router-link>
     </li>
   </ul>
 </template>
@@ -14,21 +12,21 @@ export default {
   props: {
     produtosPorPagina: {
       type: Number,
-      default: 1,
+      default: 1
     },
     produtosTotal: {
       type: Number,
-      default: 1,
-    },
+      default: 1
+    }
   },
   methods: {
     query(pagina) {
       const currentQuery = this.$route.query;
       return {
         ...currentQuery,
-        _page: pagina,
+        _page: pagina
       };
-    },
+    }
   },
   computed: {
     paginas() {
@@ -52,12 +50,12 @@ export default {
       const total = this.produtosTotal / this.produtosPorPagina;
 
       return total != Infinity ? Math.ceil(total) : 0;
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style>
+<style scoped>
 li {
   display: inline-block;
 }
