@@ -22,29 +22,40 @@ export default {
   name: "UsuarioProduto",
   components: {
     ProdutoAdicionar,
-    ProdutoItem,
+    ProdutoItem
   },
   computed: {
-    ...mapState(["login", "usuario", "usuario_produtos"]),
+    ...mapState(["login", "usuario", "usuario_produtos"])
   },
   methods: {
-    ...mapActions(["getUsuarioProdutos"]),
+    ...mapActions(["getUsuarioProdutos"])
   },
   watch: {
     login() {
       this.getUsuarioProdutos();
-    },
+    }
   },
   created() {
     if (this.login) {
       this.getUsuarioProdutos();
     }
-  },
+  }
 };
 </script>
 
 <style scoped>
 h2 {
   margin-bottom: 20px;
+}
+
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translate3d(20px, 0, 0);
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.3s;
 }
 </style>
