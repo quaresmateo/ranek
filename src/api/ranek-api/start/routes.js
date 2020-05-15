@@ -1,4 +1,5 @@
-'use strict'
+/* eslint-disable no-undef */
+"use strict";
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,9 @@
 */
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
-const Route = use('Route')
+const Route = use("Route");
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+Route.group(() => {
+  Route.post("/users", "UserController.create");
+  Route.post("/login", "UserController.login");
+}).prefix("/api/v1");

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://localhost:3030/api/v1",
 });
 
 export const api = {
@@ -16,6 +16,11 @@ export const api = {
   },
   delete(endpoint) {
     return axiosInstance.delete(endpoint);
+  },
+  login(endpoint, body) {
+    return axiosInstance.post(endpoint, body).then((response) => {
+      console.log(response);
+    });
   },
 };
 
