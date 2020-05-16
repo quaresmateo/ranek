@@ -2,8 +2,23 @@
 "use strict";
 const User = use("App/Models/User");
 class UserController {
+  async me({ auth }) {
+    return auth.getUser();
+  }
+
   async create({ request }) {
-    const data = request.only(["username", "email", "password"]);
+    const data = request.only([
+      "username",
+      "email",
+      "password",
+      "nome",
+      "cep",
+      "rua",
+      "numero",
+      "bairro",
+      "cidade",
+      "estado"
+    ]);
 
     const user = await User.create(data);
 
