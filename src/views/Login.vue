@@ -24,16 +24,18 @@ export default {
     return {
       login: {
         email: "",
-        senha: "",
-      },
+        senha: ""
+      }
     };
   },
   methods: {
     logar() {
-      this.$store.dispatch("getUsuario", this.login.email);
-      this.$router.push("/usuario");
-    },
-  },
+      this.$store.dispatch("logarUsuario", this.login).then(() => {
+        this.$store.dispatch("getUsuario");
+        this.$router.push("/usuario");
+      });
+    }
+  }
 };
 </script>
 

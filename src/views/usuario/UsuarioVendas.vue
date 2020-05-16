@@ -2,25 +2,17 @@
   <section>
     <h2>Vendas</h2>
     <div v-if="vendas">
-      <div
-        class="produtos-wrapper"
-        v-for="(venda, index) in vendas"
-        :key="index"
-      >
+      <div class="produtos-wrapper" v-for="(venda, index) in vendas" :key="index">
         <ProdutoItem v-if="venda.produto" :produto="venda.produto">
           <p class="vendedor">
-            <span>
-              Comprador:
-            </span>
+            <span>Comprador:</span>
             {{ venda.comprador_id }}
           </p>
         </ProdutoItem>
         <div class="entrega">
           <h3>Entrega:</h3>
           <ul v-if="venda.endereco">
-            <li v-for="(value, key) in venda.endereco" :key="key">
-              {{ key }}: {{ value }}
-            </li>
+            <li v-for="(value, key) in venda.endereco" :key="key">{{ key }}: {{ value }}</li>
           </ul>
         </div>
       </div>
@@ -36,33 +28,33 @@ import { mapState } from "vuex";
 export default {
   name: "UsuarioVendas",
   components: {
-    ProdutoItem,
+    ProdutoItem
   },
   data() {
     return {
-      vendas: null,
+      vendas: null
     };
   },
   computed: {
-    ...mapState(["usuario", "login"]),
+    ...mapState(["usuario", "login"])
   },
   methods: {
     getVendas() {
-      api.get(`/transacao?vendedor_id=${this.usuario.id}`).then((response) => {
+      api.get("/transacao?tipo=vendedor_id").then(response => {
         this.vendas = response.data;
       });
-    },
+    }
   },
   watch: {
     login() {
       return this.getVendas();
-    },
+    }
   },
   created() {
     if (this.login) {
       this.getVendas();
     }
-  },
+  }
 };
 </script>
 
