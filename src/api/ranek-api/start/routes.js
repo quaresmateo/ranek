@@ -22,4 +22,5 @@ Route.group(() => {
   Route.post("/login", "UserController.login");
   Route.post("/validate", "UserController.validate").middleware("auth:jwt");
   Route.get("/me", "UserController.me").middleware("auth:jwt");
+  Route.post("/produtos", "ProdutoController.create").middleware("auth:jwt");
 }).prefix("/api/v1");
