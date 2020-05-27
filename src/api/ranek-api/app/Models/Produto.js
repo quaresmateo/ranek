@@ -14,6 +14,10 @@ class Produto extends Model {
       strategy: "dbIncrement"
     });
   }
+
+  user() {
+    return this.belongsTo("App/Models/User");
+  }
 }
 
 module.exports = Produto;
