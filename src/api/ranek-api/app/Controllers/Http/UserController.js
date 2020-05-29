@@ -45,6 +45,20 @@ class UserController {
       });
     }
   }
+
+  async validate({ request, response, auth }) {
+    const { email, password } = request.all();
+    const res = await auth.attempt(email, password);
+
+    if (res) {
+      return response.json({
+        code: "jwt_auth_valid_token",
+        data: {
+          res
+        }
+      });
+    }
+  }
 }
 
 module.exports = UserController;
