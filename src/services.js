@@ -32,6 +32,9 @@ export const api = {
   login(endpoint, body) {
     return axiosInstance.post(endpoint, body);
   },
+  validateToken(endpoint, body) {
+    return axiosInstance.post(endpoint, body);
+  },
 };
 
 export function getCep(cep) {

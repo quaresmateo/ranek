@@ -2,7 +2,9 @@
   <section>
     <h2>Edenreço de Envio</h2>
     <UsuarioForm>
-      <button class="btn" @click.prevent="finalizarCompra">Finalizar Compra</button>
+      <button class="btn" @click.prevent="finalizarCompra">
+        Finalizar Compra
+      </button>
     </UsuarioForm>
   </section>
 </template>
@@ -14,7 +16,7 @@ import { mapState } from "vuex";
 export default {
   name: "FinalizarCompra",
   components: {
-    UsuarioForm
+    UsuarioForm,
   },
   props: ["produto"],
   computed: {
@@ -30,10 +32,10 @@ export default {
           numero: this.usuario.numero,
           bairro: this.usuario.bairro,
           cidade: this.usuario.cidade,
-          estado: this.usuario.estado
-        }
+          estado: this.usuario.estado,
+        },
       };
-    }
+    },
   },
   methods: {
     criarTransacao() {
@@ -44,10 +46,8 @@ export default {
     async criarUsuario() {
       try {
         await this.$store.dispatch("criarUsuario", this.$store.state.usuario);
-        await this.$store.dispatch(
-          "getUsuario",
-          this.$store.state.usuario.email
-        );
+        await this.$store.dispatch("logarUsuario", this.$store.state.usuario);
+        await this.$store.dispatch("getUsuario");
         await this.criarTransacao();
       } catch (error) {
         console.log(error);
@@ -59,8 +59,8 @@ export default {
       } else {
         this.criarUsuario();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

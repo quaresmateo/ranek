@@ -10,11 +10,24 @@
   </div>
 </template>
 <script>
+import { api } from "@/services.js";
 export default {
   name: "App",
   components: {
     TheFooter: () => import("@/components/TheFooter.vue"),
     TheHeader: () => import("@/components/TheHeader.vue"),
+  },
+  created() {
+    if (window.localStorage.token) {
+      api
+        .validateToken()
+        .then(() => {
+          this.$store.dispatch("getUsuario");
+        })
+        .catch((error) => {
+          window.localStorage.removeItem("token");
+        });
+    }
   },
 };
 </script>
