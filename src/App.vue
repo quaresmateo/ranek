@@ -88,6 +88,12 @@ p {
   transform: scale(1.1);
 }
 
+.btn-disabled,
+.btn-disabled {
+  background: #bbc;
+  transform: scale(1);
+}
+
 body {
   font-family: Avenir, Helvetica, sans-serif;
   color: #345;
