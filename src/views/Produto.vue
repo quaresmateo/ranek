@@ -15,7 +15,7 @@
             <button class="btn" v-if="! finalizar" @click="finalizar = true">Comprar</button>
             <FinalizarCompra v-else :produto="produto" />
           </transition>
-          <button v-else class="btn" disabled>Produto Vendido</button>
+          <button v-else class="btn btn-disabled" disabled>Produto Vendido</button>
         </div>
       </div>
       <PaginaCarregando v-else />
@@ -52,6 +52,30 @@ export default {
 </script>
 
 <style scoped>
+img {
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(30, 60, 90, 0.2);
+  border-radius: 4px;
+}
+
+.btn {
+  margin-top: 60px;
+  width: 200px;
+}
+
+.descricao {
+  font-size: 1.3rem;
+}
+
+.fotos {
+  grid-row: 1/3;
+}
+
+.info {
+  position: sticky;
+  top: 20px;
+}
+
 .produto {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -66,14 +90,5 @@ export default {
   font-weight: bold;
   font-size: 1.5rem;
   margin-bottom: 40px;
-}
-
-.descricao {
-  font-size: 1.3rem;
-}
-
-.btn {
-  margin-top: 60px;
-  width: 200px;
 }
 </style>
