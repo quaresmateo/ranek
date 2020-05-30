@@ -5,7 +5,7 @@
     <label for="preco">Preço (R$)</label>
     <input id="preco" name="preco" type="number" v-model="produto.preco" />
     <label for="fotos">Fotos</label>
-    <input id="fotos" name="fotos" type="file" ref="fotos" />
+    <input id="fotos" name="fotos" type="file" multiple ref="fotos" />
     <label for="descricao">Descrição</label>
     <textarea id="descricao" name="descricao" v-model="produto.descricao"></textarea>
     <input class="btn" type="button" value="Adicionar Produto" @click.prevent="adicionarProduto" />
