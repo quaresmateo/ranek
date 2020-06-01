@@ -7,6 +7,7 @@
       <label for="senha">Senha</label>
       <input type="password" name="senha" id="senha" v-model="login.senha" />
       <button class="btn" @click.prevent="logar">Logar</button>
+      <ErroNotificacao :erros="erros" />
       <a class="perdeu">
         <a href="/" target="_blank">Perdeu a senha? Clique aqui.</a>
       </a>
@@ -24,18 +25,27 @@ export default {
     return {
       login: {
         email: "",
-        senha: ""
-      }
+        senha: "",
+      },
+      erros: [],
     };
   },
+
   methods: {
     logar() {
-      this.$store.dispatch("logarUsuario", this.login).then(() => {
-        this.$store.dispatch("getUsuario");
-        this.$router.push("/usuario");
-      });
-    }
-  }
+      this.erros = [];
+      this.$store
+        .dispatch("logarUsuario", this.login)
+        .then(() => {
+          this.$store.dispatch("getUsuario");
+          this.$router.push("/usuario");
+        })
+        .catch((erro) => {
+          console.log(erro);
+          this.erros.push(erro.response.message);
+        });
+    },
+  },
 };
 </script>
 

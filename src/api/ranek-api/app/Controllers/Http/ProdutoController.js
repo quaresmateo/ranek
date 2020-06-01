@@ -20,7 +20,15 @@ class ProdutoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index({ request, response, view }) {}
+  async index({ response }) {
+    const produtos = await Produto.all();
+    return response.json({
+      message: "Success",
+      data: {
+        produtos
+      }
+    });
+  }
 
   /**
    * Create/save a new produto.
