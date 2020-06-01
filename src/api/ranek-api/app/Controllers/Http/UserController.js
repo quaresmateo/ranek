@@ -38,10 +38,9 @@ class UserController {
         });
       }
     } catch (e) {
-      console.log(e);
       return response.status(400).json({
         status: "error",
-        message: "Email/Senha inválidos."
+        message: "<strong>Erro</strong>: Email/Senha inválidos."
       });
     }
   }

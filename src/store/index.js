@@ -22,6 +22,7 @@ export default new Vuex.Store({
     },
     usuario_produtos: null,
   },
+
   mutations: {
     UPDATE_LOGIN(state, payload) {
       state.login = payload;
@@ -36,6 +37,7 @@ export default new Vuex.Store({
       state.usuario_produtos.unshift(payload);
     },
   },
+
   actions: {
     getUsuario(context) {
       return api.get("/me").then((response) => {
@@ -56,7 +58,7 @@ export default new Vuex.Store({
       return api
         .login("/login", {
           email: payload.email,
-          password: payload.senha,
+          password: payload.senha
         })
         .then((response) => {
           window.localStorage.token = `Bearer ${response.data.data.token}`;
@@ -79,5 +81,4 @@ export default new Vuex.Store({
       context.commit("UPDATE_LOGIN", false);
     },
   },
-  modules: {},
 });

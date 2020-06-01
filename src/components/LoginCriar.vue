@@ -7,6 +7,7 @@
         Criar conta
       </button>
     </UsuarioForm>
+    <ErroNotificacao :erros="erros" />
   </section>
 </template>
 
@@ -20,17 +21,19 @@ export default {
   data() {
     return {
       criar: false,
+      erros: [],
     };
   },
   methods: {
     async criarUsuario() {
+      this.erros = [];
       try {
         await this.$store.dispatch("criarUsuario", this.$store.state.usuario);
         await this.$store.dispatch("logarUsuario", this.$store.state.usuario);
         await this.$store.dispatch("getUsuario");
         this.$router.push({ name: "usuario" });
       } catch (error) {
-        console.log(error);
+        this.erros.push(error.response.message);
       }
     },
   },
