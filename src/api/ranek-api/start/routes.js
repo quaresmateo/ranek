@@ -22,8 +22,9 @@ Route.group(() => {
   Route.post("/login", "UserController.login");
   Route.post("/validate", "UserController.validate").middleware("auth:jwt");
   Route.get("/me", "UserController.me").middleware("auth:jwt");
-  Route.post("/produtos", "ProdutoController.store").middleware("auth:jwt");
-  Route.post("produtos/:id/images", "ImageController.store").middleware(
+  Route.post("/produto", "ProdutoController.store").middleware("auth:jwt");
+  Route.get("/produto", "ProdutoController.index");
+  Route.post("produto/:id/images", "ImageController.store").middleware(
     "auth:jwt"
   );
   Route.get("images/:path", "ImageController.show");
