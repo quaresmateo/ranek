@@ -101,6 +101,15 @@ export default {
   z-index: 1;
 }
 
+@media screen and (max-width) {
+  .produtos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    margin: 30px;
+  }
+}
+
 .produtos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
