@@ -12,10 +12,14 @@
           <p class="preco">{{ produto.preco | numeroPreco }}</p>
           <p class="descricao">{{ produto.descricao }}</p>
           <transition v-if="produto.vendido === 'false'" mode="out-in">
-            <button class="btn" v-if="! finalizar" @click="finalizar = true">Comprar</button>
+            <button class="btn" v-if="!finalizar" @click="finalizar = true">
+              Comprar
+            </button>
             <FinalizarCompra v-else :produto="produto" />
           </transition>
-          <button v-else class="btn btn-disabled" disabled>Produto Vendido</button>
+          <button v-else class="btn btn-disabled" disabled>
+            Produto Vendido
+          </button>
         </div>
       </div>
       <PaginaCarregando v-else />
@@ -29,25 +33,25 @@ import FinalizarCompra from "@/components/FinalizarCompra.vue";
 export default {
   name: "Produto",
   components: {
-    FinalizarCompra
+    FinalizarCompra,
   },
   props: ["id"],
   data() {
     return {
       produto: null,
-      finalizar: false
+      finalizar: false,
     };
   },
   methods: {
     getProduto() {
-      api.get(`/produto/${this.id}`).then(response => {
+      api.get(`/produto/${this.id}`).then((response) => {
         this.produto = response.data;
       });
-    }
+    },
   },
   created() {
     this.getProduto();
-  }
+  },
 };
 </script>
 
@@ -83,6 +87,20 @@ img {
   max-width: 900px;
   padding: 60px 20px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 500px) {
+  .produto {
+    grid-template-columns: 1fr;
+  }
+
+  .fotos {
+    grid-row: 2;
+  }
+
+  .info {
+    position: initial;
+  }
 }
 
 .preco {
