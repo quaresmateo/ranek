@@ -7,8 +7,17 @@
     <label for="fotos">Fotos</label>
     <input id="fotos" name="fotos" type="file" multiple ref="fotos" />
     <label for="descricao">Descrição</label>
-    <textarea id="descricao" name="descricao" v-model="produto.descricao"></textarea>
-    <input class="btn" type="button" value="Adicionar Produto" @click.prevent="adicionarProduto" />
+    <textarea
+      id="descricao"
+      name="descricao"
+      v-model="produto.descricao"
+    ></textarea>
+    <input
+      class="btn"
+      type="button"
+      value="Adicionar Produto"
+      @click.prevent="adicionarProduto"
+    />
   </form>
 </template>
 
@@ -23,8 +32,8 @@ export default {
         preco: "",
         descricao: "",
         fotos: null,
-        vendido: "false"
-      }
+        vendido: "false",
+      },
     };
   },
   methods: {
@@ -46,13 +55,21 @@ export default {
       return form;
     },
 
-    adicionarProduto() {
+    async adicionarProduto(event) {
       const produto = this.formatarProduto();
-      api.post("/produto", produto).then(() => {
-        this.$store.dispatch("getUsuarioProdutos");
-      });
-    }
-  }
+
+      const button = event.currentTarget;
+
+      button.setAttribute("disabled", "");
+      button.value = "Adicionando...";
+
+      await api.post("/produto", produto);
+      await this.$store.dispatch("getUsuarioProdutos");
+
+      button.setAttribute("disabled");
+      button.value = "Adicionar Produto";
+    },
+  },
 };
 </script>
 
