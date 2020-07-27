@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 "use strict";
 const User = use("App/Models/User");
+
 class UserController {
   async me({ auth }) {
     return auth.getUser();
@@ -11,7 +12,6 @@ class UserController {
       "username",
       "email",
       "password",
-      "nome",
       "cep",
       "rua",
       "numero",
@@ -57,6 +57,28 @@ class UserController {
         }
       });
     }
+  }
+
+  async update({ request, response, auth }) {
+    const user = await auth.current.user;
+    const data = request.only([
+      "username",
+      "email",
+      "password",
+      "cep",
+      "rua",
+      "numero",
+      "bairro",
+      "cidade",
+      "estado"
+    ]);
+
+    await user.merge(data);
+    await user.save();
+
+    return response.status(200).json({
+      message: "atualizado com sucesso"
+    });
   }
 }
 
