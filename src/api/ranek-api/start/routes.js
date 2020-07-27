@@ -18,13 +18,18 @@
 const Route = use("Route");
 
 Route.group(() => {
+  Route.get("/me", "UserController.me").middleware("auth:jwt");
+
   Route.post("/users", "UserController.create");
+  Route.put("/users", "UserController.update").middleware("auth:jwt");
   Route.post("/login", "UserController.login");
   Route.post("/validate", "UserController.validate").middleware("auth:jwt");
-  Route.get("/me", "UserController.me").middleware("auth:jwt");
+
   Route.post("/produto", "ProdutoController.store").middleware("auth:jwt");
   Route.get("/produto", "ProdutoController.index");
-  Route.post("produto/:id/images", "ImageController.store").middleware(
+  Route.get("/produto/:id", "ProdutoController.show");
+
+  Route.post("produto/:slug/images", "ImageController.store").middleware(
     "auth:jwt"
   );
   Route.get("images/:path", "ImageController.show");

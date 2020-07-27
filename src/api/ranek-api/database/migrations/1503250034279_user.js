@@ -12,7 +12,6 @@ class UserSchema extends Schema {
         .string("username", 80)
         .notNullable()
         .unique();
-      table.string("nome");
       table.string("cep");
       table.string("rua");
       table.string("numero");
