@@ -10,7 +10,7 @@ export default new Vuex.Store({
     login: false,
     usuario: {
       id: "",
-      nome: "",
+      username: "",
       email: "",
       senha: "",
       cep: "",
@@ -45,6 +45,7 @@ export default new Vuex.Store({
         context.commit("UPDATE_LOGIN", true);
       });
     },
+
     getUsuarioProdutos({ state, commit }) {
       return api
         .get(`/produto?usuario_id=${state.usuario.id}`)
@@ -52,10 +53,12 @@ export default new Vuex.Store({
           commit("UPDATE_USUARIO_PRODUTOS", response.data);
         });
     },
+
     criarUsuario(context, payload) {
       context.commit("UPDATE_USUARIO", { id: payload.email });
       return api.post("/usuario", payload);
     },
+
     logarUsuario(context, payload) {
       return api
         .login("/login", {
@@ -69,7 +72,7 @@ export default new Vuex.Store({
     deslogarUsuario(context) {
       context.commit("UPDATE_USUARIO", {
         id: "",
-        nome: "",
+        username: "",
         email: "",
         senha: "",
         cep: "",
