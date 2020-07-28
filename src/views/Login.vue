@@ -31,6 +31,10 @@ export default {
     };
   },
 
+  created() {
+    document.title = "Login";
+  },
+
   methods: {
     logar() {
       this.erros = [];
