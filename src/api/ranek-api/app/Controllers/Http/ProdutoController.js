@@ -26,7 +26,7 @@ class ProdutoController {
   async index({ response, request }) {
     let { page, _limit, q } = request.all();
     const query = q;
-    console.log(query);
+
     page = page ?? 1;
     _limit = _limit ?? 9;
 
