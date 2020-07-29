@@ -30,10 +30,7 @@ class ProdutoController {
     const produtos = await Database.from("produtos")
       .query()
       .where(function() {
-        const q =
-          this.where("nome", params.q) ||
-          this.where("preco", params.q) ||
-          this.where("descricao", params.q);
+        const q = this.where("*", params.q);
         return q;
       })
       .paginate(page ? page : 1, _limit);
