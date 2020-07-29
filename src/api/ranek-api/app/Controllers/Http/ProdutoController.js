@@ -23,17 +23,21 @@ class ProdutoController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index({ response, request, params }) {
-    let { page, _limit } = request.all();
-    page = page ? page : 1;
-    _limit = _limit ? _limit : 9;
-    const produtos = await Database.from("produtos")
-      .query()
-      .where(function() {
-        const q = this.where("*", params.q);
-        return q;
-      })
-      .paginate(page ? page : 1, _limit);
+  async index({ response, request }) {
+    let { page, _limit, q } = request.all();
+    const query = q;
+    console.log(query);
+    page = page ?? 1;
+    _limit = _limit ?? 9;
+
+    const produtos = query
+      ? await Database.from("produtos")
+          .where("slug", query)
+          .orWhere("preco", query)
+          .orWhere("descricao", query)
+          .orWhere("vendido", query)
+          .paginate(page, _limit)
+      : await Database.from("produtos").paginate(page, _limit);
 
     return response.json({ produtos });
   }
