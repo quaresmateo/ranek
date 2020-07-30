@@ -32,10 +32,10 @@ class ProdutoController {
 
     const produtos = query
       ? await Database.from("produtos")
-          .where("slug", query)
-          .orWhere("preco", query)
-          .orWhere("descricao", query)
-          .orWhere("vendido", query)
+          .where("slug", "like", `%${query}%`)
+          .orWhere("preco", "like", `%${query}%`)
+          .orWhere("descricao", "like", `%${query}%`)
+          .orWhere("vendido", "like", `%${query}%`)
           .paginate(page, _limit)
       : await Database.from("produtos").paginate(page, _limit);
 
