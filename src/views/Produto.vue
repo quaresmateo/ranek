@@ -11,7 +11,7 @@
           <h1>{{ produto.nome }}</h1>
           <p class="preco">{{ produto.preco | numeroPreco }}</p>
           <p class="descricao">{{ produto.descricao }}</p>
-          <transition v-if="produto.vendido === 'false'" mode="out-in">
+          <transition v-if="!produto.vendido" mode="out-in">
             <button class="btn" v-if="!finalizar" @click="finalizar = true">
               Comprar
             </button>
