@@ -29,7 +29,7 @@ export default {
     ...mapState(["usuario"]),
     compra() {
       return {
-        comprador_id: this.usuario.email,
+        comprador_id: this.usuario.id,
         vendedor_id: this.produto.usuario_id,
         produto: this.produto,
         endereco: {
