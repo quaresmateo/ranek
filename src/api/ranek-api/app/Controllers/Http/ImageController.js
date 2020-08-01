@@ -24,11 +24,12 @@ class ImageController {
 
   async store({ request, params }) {
     const produto = await Produto.findBy("slug", params.id);
-    console.log(request);
+
     const images = request.file("image", {
       types: ["image"],
       size: "5mb"
     });
+
     await images.moveAll(Helpers.tmpPath("uploads"), file => ({
       name: `${Date.now()}-${file.clientName}`
     }));
