@@ -1,6 +1,5 @@
-'use strict'
+"use strict";
 
-class TransacaoController {
-}
+class TransacaoController {}
 
-module.exports = TransacaoController
+module.exports = TransacaoController;
