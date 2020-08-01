@@ -23,7 +23,7 @@ class ImageController {
   }
 
   async store({ request, params }) {
-    const produto = await Produto.findOrFail(params.id); //pesquisar como procurar por slug
+    const produto = await Produto.findBy("slug", params.id);
     console.log(request);
     const images = request.file("image", {
       types: ["image"],
