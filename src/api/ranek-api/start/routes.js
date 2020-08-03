@@ -20,8 +20,8 @@ const Route = use("Route");
 Route.group(() => {
   Route.get("/me", "UserController.me").middleware("auth:jwt");
 
-  Route.post("/users", "UserController.create");
-  Route.put("/users", "UserController.update").middleware("auth:jwt");
+  Route.post("/usuario", "UserController.create");
+  Route.put("/usuario", "UserController.update").middleware("auth:jwt");
   Route.post("/login", "UserController.login");
   Route.post("/validate", "UserController.validate").middleware("auth:jwt");
 
