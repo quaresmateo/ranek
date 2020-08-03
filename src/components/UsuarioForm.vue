@@ -5,8 +5,8 @@
       <input id="username" name="username" type="text" v-model="username" />
       <label for="email">Email</label>
       <input id="email" name="email" type="email" v-model="email" />
-      <label for="senha">Senha</label>
-      <input id="senha" name="senha" type="password" v-model="senha" />
+      <label for="password">Senha</label>
+      <input id="password" name="password" type="password" v-model="password" />
     </div>
 
     <label for="cep">Cep</label>
@@ -44,7 +44,7 @@ export default {
       fields: [
         "username",
         "email",
-        "senha",
+        "password",
         "rua",
         "cep",
         "numero",

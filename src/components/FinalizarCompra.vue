@@ -45,15 +45,9 @@ export default {
   },
   methods: {
     criarTransacao() {
-      return api
-        .post("/transacao", this.compra)
-        .then(() => {
-          this.$router.push({ name: "compras" });
-        })
-        .catch((response) => {
-          alert("Ocorreu um erro. Verifique se você está logado.");
-          console.log(response);
-        });
+      return api.post("/transacao", this.compra).then(() => {
+        this.$router.push({ name: "compras" });
+      });
     },
     async criarUsuario() {
       try {
