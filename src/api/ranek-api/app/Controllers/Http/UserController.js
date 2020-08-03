@@ -7,7 +7,7 @@ class UserController {
     return auth.getUser();
   }
 
-  async create({ request }) {
+  async create({ request, response }) {
     const data = request.only([
       "username",
       "email",
@@ -22,7 +22,7 @@ class UserController {
 
     const user = await User.create(data);
 
-    return user;
+    return response.json(user);
   }
 
   async login({ request, auth, response }) {
