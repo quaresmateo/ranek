@@ -29,17 +29,9 @@ export default {
     ...mapState(["usuario"]),
     compra() {
       return {
-        comprador_id: this.usuario.email,
+        comprador_id: this.usuario.id,
         vendedor_id: this.produto.usuario_id,
-        produto: this.produto,
-        endereco: {
-          cep: this.usuario.cep,
-          rua: this.usuario.rua,
-          numero: this.usuario.numero,
-          bairro: this.usuario.bairro,
-          cidade: this.usuario.cidade,
-          estado: this.usuario.estado,
-        },
+        produto: this.produto.id,
       };
     },
   },

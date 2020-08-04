@@ -18,14 +18,23 @@
 const Route = use("Route");
 
 Route.group(() => {
-  Route.post("/users", "UserController.create");
+  Route.get("/me", "UserController.me").middleware("auth:jwt");
+
+  Route.post("/usuario", "UserController.create");
+  Route.put("/usuario", "UserController.update").middleware("auth:jwt");
   Route.post("/login", "UserController.login");
   Route.post("/validate", "UserController.validate").middleware("auth:jwt");
-  Route.get("/me", "UserController.me").middleware("auth:jwt");
+
   Route.post("/produto", "ProdutoController.store").middleware("auth:jwt");
   Route.get("/produto", "ProdutoController.index");
-  Route.post("produto/:id/images", "ImageController.store").middleware(
+  Route.get("/produto/:id", "ProdutoController.show");
+
+  Route.post("produto/:slug/images", "ImageController.store").middleware(
     "auth:jwt"
   );
-  Route.get("images/:path", "ImageController.show");
+
+  Route.get("/transacao", "TransacaoController.index").middleware("auth:jwt");
+  Route.post("/transacao", "TransacaoController.store").middleware("auth:jwt");
+
+  Route.get("/images/:path", "ImageController.show");
 }).prefix("/api/v1");

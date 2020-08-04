@@ -12,7 +12,9 @@
           <router-link :to="{ name: 'vendas' }">Vendas</router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'usuario-editar' }">Editar Usuário</router-link>
+          <router-link :to="{ name: 'usuario-editar' }"
+            >Editar Usuário</router-link
+          >
         </li>
         <li>
           <button @click="deslogar">Deslogar</button>
@@ -28,12 +30,15 @@
 <script>
 export default {
   name: "Usuario",
+  created() {
+    document.title = "Usuário";
+  },
   methods: {
     deslogar() {
       this.$store.dispatch("deslogarUsuario");
       this.$router.push("/login");
-    }
-  }
+    },
+  },
 };
 </script>
 

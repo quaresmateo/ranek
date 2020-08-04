@@ -66,7 +66,7 @@ export default {
       await api.post("/produto", produto);
       await this.$store.dispatch("getUsuarioProdutos");
 
-      button.setAttribute("disabled");
+      button.removeAttribute("disabled");
       button.value = "Adicionar Produto";
     },
   },

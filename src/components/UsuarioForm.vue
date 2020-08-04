@@ -1,16 +1,22 @@
 <template>
   <form>
     <div class="usuario" v-if="mostrarDadosLogin">
-      <label for="nome">Nome</label>
-      <input id="nome" name="nome" type="text" v-model="nome" />
+      <label for="username">Nome</label>
+      <input id="username" name="username" type="text" v-model="username" />
       <label for="email">Email</label>
       <input id="email" name="email" type="email" v-model="email" />
-      <label for="senha">Senha</label>
-      <input id="senha" name="senha" type="password" v-model="senha" />
+      <label for="password">Senha</label>
+      <input id="password" name="password" type="password" v-model="password" />
     </div>
 
     <label for="cep">Cep</label>
-    <input id="cep" name="cep" type="text" v-model="cep" @keyup="preencherCep" />
+    <input
+      id="cep"
+      name="cep"
+      type="text"
+      v-model="cep"
+      @keyup="preencherCep"
+    />
     <label for="rua">Rua</label>
     <input id="rua" name="rua" type="text" v-model="rua" />
     <label for="numero">Numero</label>
@@ -36,36 +42,36 @@ export default {
   computed: {
     ...mapFields({
       fields: [
-        "nome",
+        "username",
         "email",
-        "senha",
+        "password",
         "rua",
         "cep",
         "numero",
         "bairro",
         "cidade",
-        "estado"
+        "estado",
       ],
       base: "usuario",
-      mutation: "UPDATE_USUARIO"
+      mutation: "UPDATE_USUARIO",
     }),
     mostrarDadosLogin() {
       return !this.$store.state.login || this.$route.name === "usuario-editar";
-    }
+    },
   },
   methods: {
     preencherCep() {
       const cep = this.cep.replace(/\D/g, "");
       if (cep.length === 8) {
-        getCep(cep).then(response => {
+        getCep(cep).then((response) => {
           this.rua = response.data.logradouro;
           this.bairro = response.data.bairro;
           this.estado = response.data.uf;
           this.cidade = response.data.localidade;
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

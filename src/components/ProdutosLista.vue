@@ -7,7 +7,7 @@
           :key="produto.id + index"
           class="produto"
         >
-          <router-link :to="{ name: 'produto', params: { id: produto.id } }">
+          <router-link :to="{ name: 'produto', params: { id: produto.slug } }">
             <img
               v-if="produto.fotos"
               :src="produto.fotos[0].src"
@@ -54,8 +54,9 @@ export default {
     getProdutos() {
       this.produtos = null;
       api.get(this.url).then((response) => {
-        this.produtosTotal = Number(response.headers["x-total-count"]);
-        this.produtos = response.data;
+        // this.produtosTotal = Number(response.headers["x-total-count"]);
+        this.produtosTotal = Number(response.data.produtos.total);
+        this.produtos = response.data.produtos.data;
       });
     },
   },

@@ -1,6 +1,7 @@
 "use strict";
 
 /** @type {import('@adonisjs/lucid/src/Schema')} */
+// eslint-disable-next-line no-undef
 const Schema = use("Schema");
 
 class ProdutoSchema extends Schema {

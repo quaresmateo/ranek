@@ -13,8 +13,11 @@ export default {
   name: "Home",
   components: {
     ProdutosBuscar,
-    ProdutosLista
-  }
+    ProdutosLista,
+  },
+  created() {
+    document.title = "Ranek";
+  },
 };
 </script>
 
