@@ -55,7 +55,6 @@ export default new Vuex.Store({
     },
 
     criarUsuario(context, payload) {
-      context.commit("UPDATE_USUARIO", { id: payload.id });
       return api.post("/usuario", payload);
     },
 
@@ -63,7 +62,7 @@ export default new Vuex.Store({
       return api
         .login("/login", {
           email: payload.email,
-          password: payload.senha,
+          password: payload.password,
         })
         .then((response) => {
           window.localStorage.token = `Bearer ${response.data.data.token}`;
