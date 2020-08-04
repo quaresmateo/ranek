@@ -4,8 +4,13 @@
     <form>
       <label for="email">Email</label>
       <input type="email" name="email" id="email" v-model="login.email" />
-      <label for="senha">Senha</label>
-      <input type="password" name="senha" id="senha" v-model="login.senha" />
+      <label for="password">Senha</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        v-model="login.password"
+      />
       <button class="btn" @click.prevent="logar">Logar</button>
       <ErroNotificacao :erros="erros" />
       <a class="perdeu">
@@ -25,7 +30,7 @@ export default {
     return {
       login: {
         email: "",
-        senha: "",
+        password: "",
       },
       erros: [],
     };
