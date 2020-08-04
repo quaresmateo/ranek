@@ -32,5 +32,9 @@ Route.group(() => {
   Route.post("produto/:slug/images", "ImageController.store").middleware(
     "auth:jwt"
   );
-  Route.get("images/:path", "ImageController.show");
+
+  Route.get("/transacoes", "TransacaoController.index").middleware("auth:jwt");
+  Route.post("/transacoes", "TransacaoController.store").middleware("auth:jwt");
+
+  Route.get("/images/:path", "ImageController.show");
 }).prefix("/api/v1");
