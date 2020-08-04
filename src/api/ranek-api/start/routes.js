@@ -33,8 +33,8 @@ Route.group(() => {
     "auth:jwt"
   );
 
-  Route.get("/transacoes", "TransacaoController.index").middleware("auth:jwt");
-  Route.post("/transacoes", "TransacaoController.store").middleware("auth:jwt");
+  Route.get("/transacao", "TransacaoController.index").middleware("auth:jwt");
+  Route.post("/transacao", "TransacaoController.store").middleware("auth:jwt");
 
   Route.get("/images/:path", "ImageController.show");
 }).prefix("/api/v1");
