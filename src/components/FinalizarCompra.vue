@@ -30,7 +30,7 @@ export default {
     compra() {
       return {
         comprador_id: this.usuario.id,
-        vendedor_id: this.produto.usuario_id,
+        vendedor_id: this.produto.user_id,
         produto: this.produto.id,
       };
     },
