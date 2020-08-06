@@ -12,13 +12,12 @@ const Database = use("Database");
 
 class ProdutoController {
   async index({ response, request }) {
-    let { page, _limit, q } = request.all();
-    const query = q;
+    let { page, _limit, q: query, usuario_id } = request.all();
 
     page = page ?? 1;
     _limit = _limit ?? 9;
 
-    const produtos = query
+    let produtos = query
       ? await Database.from("produtos")
           .where("slug", "like", `%${query}%`)
           .orWhere("preco", "like", `%${query}%`)
@@ -27,12 +26,20 @@ class ProdutoController {
           .paginate(page, _limit)
       : await Database.from("produtos").paginate(page, _limit);
 
+    if (usuario_id) {
+      const produtos_usuario = await Database.from("produtos").where(
+        "usuario_id",
+        usuario_id
+      );
+      return response.json({ produtos_usuario });
+    }
+
     return response.json({ produtos });
   }
 
   async store({ request, response, auth }) {
-    const user_id = auth.user.id;
-    const user = await User.find(user_id);
+    const usuario_id = auth.user.id;
+    const user = await User.find(usuario_id);
     const produto = await user.produtos().create({
       ...request.only(["nome", "descricao", "preco"])
     });
@@ -52,7 +59,13 @@ class ProdutoController {
 
   async update({ params, request, response }) {}
 
-  async destroy({ params, request, response }) {}
+  async destroy({ params, response }) {
+    const produto = await Database.table("produtos").where("id", params.id);
+    await produto.delete();
+    return reeponse.json({
+      message: "Deletado com sucesso!"
+    });
+  }
 }
 
 module.exports = ProdutoController;

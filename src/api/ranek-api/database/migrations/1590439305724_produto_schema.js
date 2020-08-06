@@ -13,11 +13,11 @@ class ProdutoSchema extends Schema {
       table.double("preco");
       table.double("descricao");
       table.boolean("vendido").defaultTo(false);
-      table.integer("user_id").unsigned();
+      table.integer("usuario_id").unsigned();
       table.timestamps();
 
       table
-        .foreign("user_id")
+        .foreign("usuario_id")
         .references("users.id")
         .onDelete("cascade");
     });
