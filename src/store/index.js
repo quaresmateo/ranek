@@ -48,9 +48,9 @@ export default new Vuex.Store({
 
     getUsuarioProdutos({ state, commit }) {
       return api
-        .get(`/produto?user_id=${state.usuario.id}`)
+        .get(`/produto?user_id=${state.usuario.id}&_limit=100`)
         .then((response) => {
-          commit("UPDATE_USUARIO_PRODUTOS", response.data);
+          commit("UPDATE_USUARIO_PRODUTOS", response.data.data);
         });
     },
 
