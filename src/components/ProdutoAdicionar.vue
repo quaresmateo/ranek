@@ -32,7 +32,7 @@ export default {
         preco: "",
         descricao: "",
         fotos: null,
-        vendido: "false",
+        vendido: false,
       },
     };
   },
@@ -50,7 +50,7 @@ export default {
       form.append("preco", this.produto.preco);
       form.append("descricao", this.produto.descricao);
       form.append("vendido", this.produto.vendido);
-      form.append("usuario_id", this.$store.state.usuario.id);
+      form.append("user_id", this.$store.state.usuario.id);
 
       return form;
     },

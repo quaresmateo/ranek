@@ -26,6 +26,9 @@ Route.group(() => {
   Route.post("/validate", "UserController.validate").middleware("auth:jwt");
 
   Route.post("/produto", "ProdutoController.store").middleware("auth:jwt");
+  Route.delete("/produto/:id", "ProdutoController.destroy").middleware(
+    "auth:jwt"
+  );
   Route.get("/produto", "ProdutoController.index");
   Route.get("/produto/:id", "ProdutoController.show");
 

@@ -12,13 +12,12 @@ const Database = use("Database");
 
 class ProdutoController {
   async index({ response, request }) {
-    let { page, _limit, q } = request.all();
-    const query = q;
+    let { page, _limit, q: query, user_id } = request.all();
 
     page = page ?? 1;
     _limit = _limit ?? 9;
 
-    const produtos = query
+    let produtos = query
       ? await Database.from("produtos")
           .where("slug", "like", `%${query}%`)
           .orWhere("preco", "like", `%${query}%`)
@@ -26,6 +25,14 @@ class ProdutoController {
           .orWhere("vendido", "like", `%${query}%`)
           .paginate(page, _limit)
       : await Database.from("produtos").paginate(page, _limit);
+
+    if (user_id) {
+      const produtos_usuario = await Database.from("produtos").where(
+        "user_id",
+        user_id
+      );
+      return response.json({ data: produtos_usuario });
+    }
 
     return response.json({ produtos });
   }
@@ -52,7 +59,14 @@ class ProdutoController {
 
   async update({ params, request, response }) {}
 
-  async destroy({ params, request, response }) {}
+  async destroy({ params, response }) {
+    const produto = await Database.table("produtos")
+      .where("id", params.id)
+      .delete();
+    return response.json({
+      message: "Deletado com sucesso!"
+    });
+  }
 }
 
 module.exports = ProdutoController;
