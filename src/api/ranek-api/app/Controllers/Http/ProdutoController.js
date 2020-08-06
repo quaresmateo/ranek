@@ -31,7 +31,7 @@ class ProdutoController {
         "usuario_id",
         usuario_id
       );
-      return response.json({ produtos_usuario });
+      return response.json({ data: produtos_usuario });
     }
 
     return response.json({ produtos });
