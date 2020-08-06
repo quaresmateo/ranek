@@ -60,9 +60,10 @@ class ProdutoController {
   async update({ params, request, response }) {}
 
   async destroy({ params, response }) {
-    const produto = await Database.table("produtos").where("id", params.id);
-    await produto.delete();
-    return reeponse.json({
+    const produto = await Database.table("produtos")
+      .where("id", params.id)
+      .delete();
+    return response.json({
       message: "Deletado com sucesso!"
     });
   }
