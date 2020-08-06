@@ -73,7 +73,7 @@ export default new Vuex.Store({
         id: "",
         username: "",
         email: "",
-        senha: "",
+        password: "",
         cep: "",
         rua: "",
         numero: "",
