@@ -12,7 +12,7 @@ const Database = use("Database");
 
 class ProdutoController {
   async index({ response, request }) {
-    let { page, _limit, q: query, usuario_id } = request.all();
+    let { page, _limit, q: query, user_id } = request.all();
 
     page = page ?? 1;
     _limit = _limit ?? 9;
@@ -26,10 +26,10 @@ class ProdutoController {
           .paginate(page, _limit)
       : await Database.from("produtos").paginate(page, _limit);
 
-    if (usuario_id) {
+    if (user_id) {
       const produtos_usuario = await Database.from("produtos").where(
-        "usuario_id",
-        usuario_id
+        "user_id",
+        user_id
       );
       return response.json({ data: produtos_usuario });
     }
@@ -38,8 +38,8 @@ class ProdutoController {
   }
 
   async store({ request, response, auth }) {
-    const usuario_id = auth.user.id;
-    const user = await User.find(usuario_id);
+    const user_id = auth.user.id;
+    const user = await User.find(user_id);
     const produto = await user.produtos().create({
       ...request.only(["nome", "descricao", "preco"])
     });
