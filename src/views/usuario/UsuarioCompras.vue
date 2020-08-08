@@ -40,7 +40,6 @@ export default {
   methods: {
     getCompras() {
       api.get("/transacao?tipo=comprador_id").then((response) => {
-        console.log(response.data);
         this.compras = response.data;
       });
     },
